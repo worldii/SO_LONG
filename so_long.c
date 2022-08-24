@@ -1,10 +1,5 @@
 #include "so_long.h"
 
-void param_init(t_param *param)
-{
-    param->x = 3;
-    param->y = 4;
-}
 void img_init(void *mlx, t_mapinfo *map)
 {
     int img_width;
@@ -15,22 +10,57 @@ void img_init(void *mlx, t_mapinfo *map)
     map->img_fences = mlx_xpm_file_to_image(mlx, "./images/fence2.xpm", &img_width, &img_height);
     map->img_tile = mlx_xpm_file_to_image(mlx, "./images/grass2.xpm", &img_width, &img_height);
 }
-
-int key_press(int keycode, t_param *param)
+void draw_up(t_mapinfo *map)
 {
-    static int a = 0;
+    if (map->line[map->loc.x - 1][map->loc.y] == '1')
+        return;
+    map->line[map->loc.x][map->loc.y] = '0';
+    map->line[map->loc.x - 1][map->loc.y] = 'P';
+    map->loc.x--;
+    draw_game(map->mlx, map->win, map);
+}
+void draw_down(t_mapinfo *map)
+{
+    if (map->line[map->loc.x + 1][map->loc.y] == '1')
+        return;
+    map->line[map->loc.x][map->loc.y] = '0';
+    map->line[map->loc.x + 1][map->loc.y] = 'P';
+    map->loc.x++;
+    draw_game(map->mlx, map->win, map);
+}
+
+void draw_left(t_mapinfo *map)
+{
+    if (map->line[map->loc.x][map->loc.y - 1] == '1')
+        return;
+    map->line[map->loc.x][map->loc.y] = '0';
+    map->line[map->loc.x][map->loc.y - 1] = 'P';
+    map->loc.y--;
+    draw_game(map->mlx, map->win, map);
+}
+void draw_right(t_mapinfo *map)
+{
+    if (map->line[map->loc.x][map->loc.y + 1] == '1')
+        return;
+    map->line[map->loc.x][map->loc.y] = '0';
+    map->line[map->loc.x][map->loc.y + 1] = 'P';
+    map->loc.y++;
+    draw_game(map->mlx, map->win, map);
+}
+int key_press(int keycode, t_mapinfo *map)
+{
 
     if (keycode == KEY_W)
-        param->y++;
+        draw_up(map);
     else if (keycode == KEY_S)
-        param->y--;
+        draw_down(map);
     else if (keycode == KEY_A)
-        param->x--;
+        draw_left(map);
     else if (keycode == KEY_D)
-        param->x++;
+        draw_right(map);
     else if (keycode == KEY_ESC)
         exit(0);
-    printf("x: %d, y: %d\n", param->x, param->y);
+
     return (0);
 }
 
@@ -38,6 +68,7 @@ void map_read(t_mapinfo *map, char *filename)
 {
     int fd;
     char *line;
+    t_param *param = &(map->loc);
 
     fd = open(filename, O_RDONLY);
     line = get_next_line(fd);
@@ -56,7 +87,17 @@ void map_read(t_mapinfo *map, char *filename)
     for (int i = 0; i < map->height; i++)
     {
         map->line[i] = get_next_line(fd);
+        for (int j = 0; j < map->width; j++)
+        {
+            if (map->line[i][j] == 'P')
+            {
+                param->x = i;
+                param->y = j;
+                break;
+            }
+        }
     }
+
     close(fd);
     /*
      */
