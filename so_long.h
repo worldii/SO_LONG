@@ -26,9 +26,16 @@ typedef struct s_mapinfo
     int height;
     int width;
     char **line;
+    void *img_dino;
+    void *img_apple;
+    void *img_exit;
+    void *img_fences;
+    void *img_tile;
+
 } t_mapinfo;
 void map_read(t_mapinfo *map, char *filename);
+void img_init(void *mlx, t_mapinfo *map);
 void param_init(t_param *param);
 int key_press(int keycode, t_param *param);
-
+void draw_game(void *mlx, void *win, t_mapinfo *map);
 #endif
