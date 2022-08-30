@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/31 03:31:26 by jonghapark        #+#    #+#             */
+/*   Updated: 2022/08/31 04:52:39 by jonghapark       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
@@ -26,14 +38,17 @@ typedef struct s_mapinfo
 {
     int height;
     int width;
+    int ccount;
     char **line;
     void *img_dino;
     void *img_apple;
     void *img_exit;
+    void *img_exit2;
     void *img_fences;
     void *img_tile;
     void *mlx;
     void *win;
+
     t_param loc;
 
 } t_mapinfo;
@@ -42,4 +57,11 @@ void img_init(void *mlx, t_mapinfo *map);
 void param_init(t_param *param);
 int key_press(int keycode, t_mapinfo *map);
 void draw_game(void *mlx, void *win, t_mapinfo *map);
+int exit_map(t_mapinfo *map);
+void errormsg(char *message);
+void check_map(t_mapinfo *map);
+void rec_check(t_mapinfo *map);
+void count_check(t_mapinfo *map);
+void wall_check(t_mapinfo *map);
+void end_game(t_mapinfo *map);
 #endif
