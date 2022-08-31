@@ -6,7 +6,7 @@
 #    By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 03:31:47 by jonghapark        #+#    #+#              #
-#    Updated: 2022/08/31 13:36:05 by jonghapark       ###   ########.fr        #
+#    Updated: 2022/08/31 14:15:53 by jonghapark       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ FLAGS		=
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS)
-		arch -x86_64 gcc -o $(NAME) $(OBJS) -L../mlx -lmlx -framework OpenGL -framework AppKit
+		arch -x86_64 gcc -o $(NAME) $(OBJS) -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 %.o			:	%.c
 		arch -x86_64 gcc $(FLAGS) -c $^ -I./ -o $@
