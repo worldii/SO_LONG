@@ -6,13 +6,13 @@
 /*   By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:31:21 by jonghapark        #+#    #+#             */
-/*   Updated: 2022/08/31 13:39:51 by jonghapark       ###   ########.fr       */
+/*   Updated: 2022/09/01 02:18:17 by jonghapark       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	img_init(void	*mlx, t_mapinfo	*map)
+void	img_init(void *mlx, t_mapinfo *map)
 {
 	int	w;
 	int	h;
@@ -52,16 +52,34 @@ void	map_read(t_mapinfo *map, char *filename)
 	close(fd);
 }
 
-void	set_param(t_mapinfo	*map, t_param	*param, char	*line, int fd)
+static int	is_newline(char *buf)
+{
+	int	i;
+
+	i = -1;
+	while (buf[++i])
+	{
+		if (buf[i] == '\n')
+			return (i);
+	}
+	return (-1);
+}
+
+void	set_param(t_mapinfo *map, t_param *param, char *line, int fd)
 {
 	int	i;
 	int	j;
+	int	idx;
 
 	i = -1;
 	while (++i < map->h)
 	{
 		line = get_next_line(fd);
-		map->line[i] = ft_strndup(line, 0, map->w);
+		idx = is_newline(line);
+		if (idx == -1)
+			map->line[i] = ft_strndup(line, 0, ft_strlen(line) - 1);
+		else
+			map->line[i] = ft_strndup(line, 0, idx - 1);
 		free(line);
 		j = -1;
 		while (++j < map->w)
@@ -72,6 +90,6 @@ void	set_param(t_mapinfo	*map, t_param	*param, char	*line, int fd)
 				param->y = j;
 				break ;
 			}
-		}	
+		}
 	}
 }

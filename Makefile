@@ -6,7 +6,7 @@
 #    By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 03:31:47 by jonghapark        #+#    #+#              #
-#    Updated: 2022/08/31 14:15:53 by jonghapark       ###   ########.fr        #
+#    Updated: 2022/09/01 02:04:21 by jonghapark       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,15 @@ OBJS		= $(SRCS:%.c=%.o)
 
 LIBC		= ar rc
 
-FLAGS		=  
-#-Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror
 
 all			:	$(NAME)
 $(NAME)		:	$(OBJS)
 		make all -C $(LIBFT)/
-		gcc -o $(NAME) $(OBJS) -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
+		arch -x86_64 gcc -o $(NAME) $(OBJS) -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 %.o			:	%.c
-		gcc $(FLAGS) -c $^ -I./ -o $@
+		arch -x86_64 gcc $(FLAGS) -c $^ -I./ -o $@
 
 
 clean		:
