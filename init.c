@@ -23,6 +23,8 @@ void	img_init(void	*mlx, t_mapinfo	*map)
     map->img_fences = mlx_xpm_file_to_image(mlx, "./images/fence2.xpm", &img_width, &img_height);
     map->img_tile = mlx_xpm_file_to_image(mlx, "./images/grass2.xpm", &img_width, &img_height);
 }
+
+ 
 void map_read(t_mapinfo *map, char *filename)
 {
     int fd;
@@ -50,6 +52,7 @@ void map_read(t_mapinfo *map, char *filename)
         line = get_next_line(fd);
         map->line[i] = ft_strndup(line, 0, map->width);
         free(line);
+        
         for (int j = 0; j < map->width; j++)
         {
             if (map->line[i][j] == 'P')
@@ -66,9 +69,11 @@ void map_read(t_mapinfo *map, char *filename)
 
 void end_game(t_mapinfo *map)
 {
-    // 걷는 스텝 수 세야함
-    exit(0);
-}
+    map->stepcnt++;
+    printf("GAME CLEAR ! ALL STEPS : %d\n",map->stepcnt);
+    free_map(map);
+    exit_map(map);
+ }
 void free_map(t_mapinfo *map)
 {
     for (int i = 0; i < map->height; i++)

@@ -25,7 +25,8 @@ void draw_up(t_mapinfo *map)
     }
     if (map->line[map->loc.x - 1][map->loc.y] == 'C')
         map->ccount--;
-
+    map->stepcnt++;
+    printf("%d\n",map->stepcnt);    
     map->line[map->loc.x][map->loc.y] = '0';
     map->line[map->loc.x - 1][map->loc.y] = 'P';
     map->loc.x--;
@@ -44,6 +45,8 @@ void draw_down(t_mapinfo *map)
     }
     if (map->line[map->loc.x + 1][map->loc.y] == 'C')
         map->ccount--;
+    map->stepcnt++;
+    printf("%d\n",map->stepcnt);
     map->line[map->loc.x][map->loc.y] = '0';
     map->line[map->loc.x + 1][map->loc.y] = 'P';
     map->loc.x++;
@@ -62,6 +65,8 @@ void draw_left(t_mapinfo *map)
     }
     if (map->line[map->loc.x][map->loc.y - 1] == 'C')
         map->ccount--;
+    map->stepcnt++;
+    printf("%d\n",map->stepcnt);
     map->line[map->loc.x][map->loc.y] = '0';
     map->line[map->loc.x][map->loc.y - 1] = 'P';
     map->loc.y--;
@@ -80,6 +85,8 @@ void draw_right(t_mapinfo *map)
     }
     if (map->line[map->loc.x][map->loc.y + 1] == 'C')
         map->ccount--;
+    map->stepcnt++;
+    printf("%d\n",map->stepcnt);
     map->line[map->loc.x][map->loc.y] = '0';
     map->line[map->loc.x][map->loc.y + 1] = 'P';
     map->loc.y++;
