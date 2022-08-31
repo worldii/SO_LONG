@@ -20,7 +20,7 @@
 #include <fcntl.h>
 #include "Libft/libft.h"
 #include <unistd.h>
-#include <stdio.h> // 빼야할듯..
+#include <stdio.h> 
 #include <stdlib.h>
 #include "get_next_line.h"
 
@@ -36,20 +36,19 @@ typedef struct s_param
     int y;
 } t_param;
 
-
 typedef struct s_mapinfo
 {
-    int height;
-    int width;
+    int h;
+    int w;
     int ccount;
     int stepcnt;
     char **line;
-    void *img_dino;
+    void *dino;
     void *apple;
-    void *img_exit;
-    void *img_exit2;
-    void *img_fences;
-    void *img_tile;
+    void *exit;
+    void *exit2;
+    void *fences;
+    void *tile;
     void *mlx;
     void *win;
     t_param loc;
@@ -69,5 +68,6 @@ void count_check(t_mapinfo *map);
 void wall_check(t_mapinfo *map);
 void end_game(t_mapinfo *map);
 void free_map(t_mapinfo *map);
+void drawe (void *mlx, t_mapinfo *map, int w, int h);
 
 #endif

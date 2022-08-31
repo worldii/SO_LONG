@@ -21,23 +21,23 @@ void check_map(t_mapinfo *map)
 
 void rec_check(t_mapinfo *map)
 {
-    for (int i = 0; i < map->height; i++)
+    for (int i = 0; i < map->h; i++)
     {
-        if (ft_strlen(map->line[i]) != map->width)
+        if (ft_strlen(map->line[i]) != map->w)
             errormsg("RECTANGULAR ERROR");
     }
 }
 void wall_check(t_mapinfo *map)
 {
-    for (int i = 0; i < map->width; i++)
+    for (int i = 0; i < map->w; i++)
     {
-        if (map->line[0][i] != '1' || map->line[map->height - 1][i] != '1')
+        if (map->line[0][i] != '1' || map->line[map->h - 1][i] != '1')
             errormsg("WALL ERROR");
     }
 
-    for (int i = 1; i < map->height - 1; i++)
+    for (int i = 1; i < map->h - 1; i++)
     {
-        if (map->line[i][0] != '1' || map->line[i][map->width - 1] != '1')
+        if (map->line[i][0] != '1' || map->line[i][map->w - 1] != '1')
             errormsg("WALL ERROR");
     }
 }
@@ -47,9 +47,9 @@ void count_check(t_mapinfo *map)
     int ecount = 0;
     map->ccount = 0;
     map->stepcnt = 0;
-    for (int i = 0; i < map->height; i++)
+    for (int i = 0; i < map->h; i++)
     {
-        for (int j = 0; j < map->width; j++)
+        for (int j = 0; j < map->w; j++)
         {
             if (map->line[i][j] == 'E')
                 ecount++;

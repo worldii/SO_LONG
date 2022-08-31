@@ -14,17 +14,16 @@
 
 void	img_init(void	*mlx, t_mapinfo	*map)
 {
-	int	img_width;
-	int	img_height;
-	map->img_dino = mlx_xpm_file_to_image(mlx, "./images/dino2.xpm", &img_width, &img_height);
-    map->img_apple = mlx_xpm_file_to_image(mlx, "./images/food2.xpm", &img_width, &img_height);
-    map->img_exit = mlx_xpm_file_to_image(mlx, "./images/exit.xpm", &img_width, &img_height);
-    map->img_exit2 = mlx_xpm_file_to_image(mlx, "./images/exit2.xpm", &img_width, &img_height);
-    map->img_fences = mlx_xpm_file_to_image(mlx, "./images/fence2.xpm", &img_width, &img_height);
-    map->img_tile = mlx_xpm_file_to_image(mlx, "./images/grass2.xpm", &img_width, &img_height);
+	int	width;
+	int	height;
+	map->dino = mlx_xpm_file_to_image(mlx, "./images/dino2.xpm", &width, &height);
+    map->apple = mlx_xpm_file_to_image(mlx, "./images/food2.xpm", &width, &height);
+    map->exit = mlx_xpm_file_to_image(mlx, "./images/exit.xpm", &width, &height);
+    map->exit2 = mlx_xpm_file_to_image(mlx, "./images/exit2.xpm", &width, &height);
+    map->fences = mlx_xpm_file_to_image(mlx, "./images/fence2.xpm", &width, &height);
+    map->tile = mlx_xpm_file_to_image(mlx, "./images/grass2.xpm", &width, &height);
 }
 
- 
 void map_read(t_mapinfo *map, char *filename)
 {
     int fd;
@@ -35,25 +34,25 @@ void map_read(t_mapinfo *map, char *filename)
     if (fd <= 0)
         errormsg("File open fail.\n");
     line = get_next_line(fd);
-    map->height = 0;
-    map->width = ft_strlen(line) - 1;
+    map->h = 0;
+    map->w = ft_strlen(line) - 1;
     while (line)
     {
         free(line);
-        map->height++;
+        map->h++;
         line = get_next_line(fd);
     }
     free(line);
     close(fd);
     fd = open(filename, O_RDONLY);
-    map->line = (char **)malloc(sizeof(char *) * map->height);
-    for (int i = 0; i < map->height; i++)
+    map->line = (char **)malloc(sizeof(char *) * map->h);
+    for (int i = 0; i < map->h; i++)
     {
         line = get_next_line(fd);
-        map->line[i] = ft_strndup(line, 0, map->width);
+        map->line[i] = ft_strndup(line, 0, map->w);
         free(line);
         
-        for (int j = 0; j < map->width; j++)
+        for (int j = 0; j < map->w; j++)
         {
             if (map->line[i][j] == 'P')
             {
@@ -76,7 +75,7 @@ void end_game(t_mapinfo *map)
  }
 void free_map(t_mapinfo *map)
 {
-    for (int i = 0; i < map->height; i++)
+    for (int i = 0; i < map->h; i++)
     {
         free(map->line[i]);
     }

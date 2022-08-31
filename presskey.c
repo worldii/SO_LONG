@@ -12,37 +12,38 @@
 
 #include "so_long.h"
 
-void draw_up(t_mapinfo *map)
+void	draw_up(t_mapinfo	*map)
 {
-    if (map->line[map->loc.x - 1][map->loc.y] == '1')
-        return;
-    if (map->line[map->loc.x - 1][map->loc.y] == 'E')
-    {
-        if (map->ccount != 0)
-            return;
-        else
-            end_game(map);
-    }
-    if (map->line[map->loc.x - 1][map->loc.y] == 'C')
-        map->ccount--;
-    map->stepcnt++;
-    printf("%d\n",map->stepcnt);    
-    map->line[map->loc.x][map->loc.y] = '0';
-    map->line[map->loc.x - 1][map->loc.y] = 'P';
-    map->loc.x--;
-    draw_game(map->mlx, map->win, map);
+	if (map->line[map->loc.x - 1][map->loc.y] == '1')
+		return;
+	if (map->line[map->loc.x - 1][map->loc.y] == 'E')
+	{
+		if (map->ccount != 0)
+			return;
+		else
+			end_game(map);
+	}
+	if (map->line[map->loc.x - 1][map->loc.y] == 'C')
+		map->ccount--;
+	map->stepcnt++;
+	printf("%d\n",map->stepcnt);    
+	map->line[map->loc.x][map->loc.y] = '0';
+	map->line[map->loc.x - 1][map->loc.y] = 'P';
+	map->loc.x--;
+	draw_game(map->mlx, map->win, map);
 }
+
 void draw_down(t_mapinfo *map)
 {
-    if (map->line[map->loc.x + 1][map->loc.y] == '1')
+	if (map->line[map->loc.x + 1][map->loc.y] == '1')
         return;
-    if (map->line[map->loc.x + 1][map->loc.y] == 'E')
-    {
+	if (map->line[map->loc.x + 1][map->loc.y] == 'E')
+	{
         if (map->ccount != 0)
             return;
         else
             end_game(map);
-    }
+	}
     if (map->line[map->loc.x + 1][map->loc.y] == 'C')
         map->ccount--;
     map->stepcnt++;
