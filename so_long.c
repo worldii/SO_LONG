@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jonghapa <jonghapa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:34:48 by jonghapark        #+#    #+#             */
-/*   Updated: 2022/08/31 13:34:49 by jonghapark       ###   ########.fr       */
+/*   Updated: 2022/08/31 19:46:59 by jonghapa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	main(int argc, char *argv[])
 	check_map(&map);
 	map.win = mlx_new_window(map.mlx, map.w * 64, map.h * 64, "so_long");
 	draw_game(map.mlx, map.win, &map);
-//	system("leaks so_long > leaks_result; cat leaks_result | grep leaked && rm -rf leaks_result");
 	mlx_hook(map.win, X_EVENT_KEY_PRESS, 0, &key_press, &map);
 	mlx_hook(map.win, X_EVENT_KEY_EXIT, 0, &exit_map, &map);
 	mlx_loop(map.mlx);
