@@ -6,25 +6,25 @@
 #    By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 03:31:47 by jonghapark        #+#    #+#              #
-#    Updated: 2022/08/31 03:31:47 by jonghapark       ###   ########.fr        #
+#    Updated: 2022/08/31 13:36:05 by jonghapark       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 
-SRCS		= main.c \
-			  get_next_line.c \
+SRCS		= get_next_line.c \
 			  get_next_line_utils.c \
-			  so_long.c
-
-
+			  so_long.c \
+			  presskey.c \
+			  init.c \
+			  errorcheck.c
 
 OBJS		= $(SRCS:%.c=%.o)
 
 LIBC		= ar rc
 
-FLAGS		= 
-# -Wall -Wextra -Werror
+FLAGS		=  
+#-Wall -Wextra -Werror
 
 all			:	$(NAME)
 
