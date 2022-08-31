@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errorcheck.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jonghapa <jonghapa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:31:30 by jonghapark        #+#    #+#             */
-/*   Updated: 2022/08/31 13:35:01 by jonghapark       ###   ########.fr       */
+/*   Updated: 2022/08/31 19:32:08 by jonghapa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	count_check(t_mapinfo	*map)
 	ecount = 0;
 	i = -1;
 	map->ccount = 0;
-	map->stepcnt = 0;
 	while (++i < map->h)
 	{
 		j = -1;
@@ -76,6 +75,12 @@ void	count_check(t_mapinfo	*map)
 				errormsg("Component ERROR");
 		}
 	}
+	count_check2(map, ecount, pcount);
+}
+
+void	count_check2(t_mapinfo *map, int ecount, int pcount)
+{
 	if (ecount < 1 || pcount != 1 || map->ccount < 1)
 		errormsg("Component ERROR");
+	map->stepcnt = 0;
 }
