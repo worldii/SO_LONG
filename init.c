@@ -48,26 +48,11 @@ void	map_read(t_mapinfo *map, char *filename)
 	close(fd);
 	fd = open(filename, O_RDONLY);
 	map->line = (char **)malloc(sizeof(char *) * map->h);
-	/*for (int i = 0; i < map->h; i++)
-    {
-        line = get_next_line(fd);
-        map->line[i] = ft_strndup(line, 0, map->w);
-        free(line);
-		for (int j = 0; j < map->w; j++)
-		{
-            if (map->line[i][j] == 'P')
-			{
-                param->x = i;
-                param->y = j;
-                break ;
-			}
-		}
-	}*/
-	set_param();
+	set_param(map, param, line, fd);
 	close(fd);
 }
 
-void	set_param(t_mapinfo	*map, t_param	*param)
+void	set_param(t_mapinfo	*map, t_param	*param, char	*line, int fd)
 {
 	int	i;
 	int	j;
@@ -78,6 +63,7 @@ void	set_param(t_mapinfo	*map, t_param	*param)
 		line = get_next_line(fd);
 		map->line[i] = ft_strndup(line, 0, map->w);
 		free(line);
+		j = -1;
 		while (++j < map->w)
 		{
 			if (map->line[i][j] == 'P')
@@ -88,28 +74,4 @@ void	set_param(t_mapinfo	*map, t_param	*param)
 			}
 		}	
 	}
-}
-
-void	end_game(t_mapinfo *map)
-{
-	map->stepcnt++;
-	printf("GAME CLEAR ! ALL STEPS : %d\n", map->stepcnt);
-	free_map(map);
-	exit_map(map);
-}
-
-void	free_map(t_mapinfo *map)
-{
-	int	i;
-
-	i = -1;
-	while (++i < map->h)
-		free(map->line[i]);
-	free(map->line);
-}
-
-int	exit_map(t_mapinfo *map)
-{
-	mlx_destroy_window(map->mlx, map->win);
-	exit (0);
 }

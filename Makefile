@@ -19,7 +19,8 @@ SRCS		= get_next_line.c \
 			  so_long.c \
 			  presskey.c \
 			  init.c \
-			  errorcheck.c
+			  errorcheck.c \
+			  end_game.c \
 
 OBJS		= $(SRCS:%.c=%.o)
 

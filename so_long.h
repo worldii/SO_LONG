@@ -69,5 +69,5 @@ void wall_check(t_mapinfo *map);
 void end_game(t_mapinfo *map);
 void free_map(t_mapinfo *map);
 void drawe (void *mlx, t_mapinfo *map, int w, int h);
-
+void	set_param(t_mapinfo	*map, t_param	*param, char	*line, int fd);
 #endif
