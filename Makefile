@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+         #
+#    By: jonghapa <jonghapa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 03:31:47 by jonghapark        #+#    #+#              #
-#    Updated: 2022/09/01 02:04:21 by jonghapark       ###   ########.fr        #
+#    Updated: 2022/09/02 13:33:13 by jonghapa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ FLAGS		= -Wall -Wextra -Werror
 all			:	$(NAME)
 $(NAME)		:	$(OBJS)
 		make all -C $(LIBFT)/
-		arch -x86_64 gcc -o $(NAME) $(OBJS) -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
+		gcc -o $(NAME) $(OBJS) -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 %.o			:	%.c
-		arch -x86_64 gcc $(FLAGS) -c $^ -I./ -o $@
+		gcc $(FLAGS) -c $^ -I./ -o $@
 
 
 clean		:

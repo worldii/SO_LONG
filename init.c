@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonghapark <jonghapark@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jonghapa <jonghapa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:31:21 by jonghapark        #+#    #+#             */
-/*   Updated: 2022/09/01 02:18:17 by jonghapark       ###   ########.fr       */
+/*   Updated: 2022/09/02 14:28:00 by jonghapa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	set_param(t_mapinfo *map, t_param *param, char *line, int fd)
 		line = get_next_line(fd);
 		idx = is_newline(line);
 		if (idx == -1)
-			map->line[i] = ft_strndup(line, 0, ft_strlen(line) - 1);
+			map->line[i] = ft_strndup(line, 0, ft_strlen(line));
 		else
-			map->line[i] = ft_strndup(line, 0, idx - 1);
+			map->line[i] = ft_strndup(line, 0, idx);
 		free(line);
 		j = -1;
 		while (++j < map->w)
